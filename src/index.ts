@@ -1,3 +1,4 @@
-import { Switch } from './components/Switch/Switch';
+import { Switch } from './components/Switch';
+import { Checkbox } from './components/Checkbox';
 
-export { Switch };
+export { Switch, Checkbox };
