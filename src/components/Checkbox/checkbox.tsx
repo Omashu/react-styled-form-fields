@@ -4,6 +4,7 @@ import { CheckboxProps } from './types';
 import * as Components from './styled';
 
 export * from './styled';
+export * from './types';
 
 export function Checkbox(props: CheckboxProps) {
   const value = !!props.initialValue;
