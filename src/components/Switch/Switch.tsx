@@ -1,38 +1,33 @@
 import React, { useState } from 'react';
 import { useUpdateEffect } from '../../effects';
-import { ISwitchProps } from './types';
-import * as Components from './styles';
+import { SwitchProps } from './types';
+import * as Components from './styled';
 
-export function Switch(props: ISwitchProps) {
-  const [active, changeActive] = useState(!!props.initialValue);
+export * from './styled';
+export * from './types';
+
+export function Switch(props: SwitchProps) {
+  const value = !!props.initialValue;
+  const [active, changeActive] = useState(value);
   const toggleActive = () => changeActive(!active);
 
+  useUpdateEffect(() => changeActive(value), [value]);
   useUpdateEffect(() => {
     if (typeof props.onChange === 'function') {
       props.onChange(active);
     }
   }, [active]);
 
-  const Button = props.components && props.components.Button ? props.components.Button : Components.Button;
-
-  const Input = props.components && props.components.Input ? props.components.Input : Components.Input;
-
-  const TextSwitchOn =
-    props.components && props.components.TextSwitchOn ? props.components.TextSwitchOn : Components.TextSwitchOn;
-
-  const TextSwitchOff =
-    props.components && props.components.TextSwitchOff ? props.components.TextSwitchOff : Components.TextSwitchOff;
-
-  const Circle = props.components && props.components.Circle ? props.components.Circle : Components.Circle;
+  const SwitchComponents = typeof props.components === 'object' ? { ...Components, ...props.components } : Components;
 
   return (
-    <Button activeColor={props.activeColor} active={active} onClick={toggleActive}>
-      <Input />
-      <TextSwitchOn>{props.on !== undefined && <span>{props.on}</span>}</TextSwitchOn>
-      <TextSwitchOff>{props.off !== undefined && <span>{props.off}</span>}</TextSwitchOff>
-      <Circle />
-    </Button>
+    <SwitchComponents.Control activeColor={props.activeColor} active={active} onClick={toggleActive}>
+      <SwitchComponents.Input value={active.toString()} />
+      <SwitchComponents.TextSwitchOn>{props.on !== undefined && <span>{props.on}</span>}</SwitchComponents.TextSwitchOn>
+      <SwitchComponents.TextSwitchOff>
+        {props.off !== undefined && <span>{props.off}</span>}
+      </SwitchComponents.TextSwitchOff>
+      <SwitchComponents.Circle />
+    </SwitchComponents.Control>
   );
 }
-
-Switch.Components = Components;

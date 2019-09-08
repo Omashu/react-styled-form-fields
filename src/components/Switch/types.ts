@@ -1,21 +1,22 @@
+import React from 'react';
 import { StyledComponent } from 'styled-components';
 
-export interface IButtonProps {
-  active: boolean;
-  activeColor?: string;
-}
-
-export interface ISwitchProps {
+export interface SwitchProps {
   initialValue?: boolean;
   onChange?: (checked: boolean) => void;
   activeColor?: string;
   on?: React.ReactNode;
   off?: React.ReactNode;
   components?: {
-    Button?: StyledComponent<any, any, IButtonProps, never>;
+    Control?: StyledComponent<any, any, SwitchControlProps, never>;
     Input?: StyledComponent<any, any, any, never>;
     TextSwitchOn?: StyledComponent<any, any, any, never>;
     TextSwitchOff?: StyledComponent<any, any, any, never>;
     Circle?: StyledComponent<any, any, any, never>;
   };
+}
+
+export interface SwitchControlProps {
+  active: boolean;
+  activeColor?: string;
 }

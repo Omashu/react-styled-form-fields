@@ -1,48 +1,5 @@
 import styled from 'styled-components';
-import { IButtonProps } from './types';
-
-export const Button = styled.button<IButtonProps>`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  text-transform: none;
-  text-decoration: none;
-  border-radius: 12px;
-  border: 0;
-  min-width: 52px;
-  height: 22px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  ${props =>
-    props.active &&
-    `
-    background-color: ${props.activeColor || '#000'};
-
-    ${Circle} {
-      margin-left: calc(100% - 22px);
-    }
-
-    ${TextSwitchOn} {
-      opacity: 1;
-      transform: translate(0);
-    }
-  `};
-
-  ${props =>
-    !props.active &&
-    `
-    ${TextSwitchOff} {
-      opacity: 1;
-      transform: translate(0);
-    }
-  `}
-`;
+import { SwitchControlProps } from './types';
 
 export const Input = styled.input.attrs(attrs => ({
   ...attrs,
@@ -175,4 +132,47 @@ export const Circle = styled.span`
   border-radius: 50%;
   transition: all 0.25s ease;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+`;
+
+export const Control = styled.button<SwitchControlProps>`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-transform: none;
+  text-decoration: none;
+  border-radius: 12px;
+  border: 0;
+  min-width: 52px;
+  height: 22px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${props =>
+    props.active &&
+    `
+    background-color: ${props.activeColor || '#000'};
+
+    ${Circle} {
+      margin-left: calc(100% - 22px);
+    }
+
+    ${TextSwitchOn} {
+      opacity: 1;
+      transform: translate(0);
+    }
+  `};
+
+  ${props =>
+    !props.active &&
+    `
+    ${TextSwitchOff} {
+      opacity: 1;
+      transform: translate(0);
+    }
+  `}
 `;
