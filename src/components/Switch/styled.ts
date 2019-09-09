@@ -175,4 +175,15 @@ export const Control = styled.button<SwitchControlProps>`
       transform: translate(0);
     }
   `}
+
+  ${props =>
+    props.disabled &&
+    `
+    opacity: 0.7;
+
+    &, ${Input} {
+      cursor: default;
+      pointer-events: none;
+    }
+  `}
 `;

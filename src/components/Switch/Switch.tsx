@@ -9,7 +9,7 @@ export * from './types';
 export function Switch(props: SwitchProps) {
   const value = !!props.initialValue;
   const [active, changeActive] = useState(value);
-  const toggleActive = () => changeActive(!active);
+  const toggleActive = () => !props.disabled && changeActive(!active);
 
   useUpdateEffect(() => changeActive(value), [value]);
   useUpdateEffect(() => {
@@ -21,8 +21,13 @@ export function Switch(props: SwitchProps) {
   const SwitchComponents = typeof props.components === 'object' ? { ...Components, ...props.components } : Components;
 
   return (
-    <SwitchComponents.Control activeColor={props.activeColor} active={active} onClick={toggleActive}>
-      <SwitchComponents.Input value={active.toString()} />
+    <SwitchComponents.Control
+      disabled={!!props.disabled}
+      activeColor={props.activeColor}
+      active={active}
+      onClick={toggleActive}
+    >
+      <SwitchComponents.Input disabled={!!props.disabled} value={active.toString()} />
       <SwitchComponents.TextSwitchOn>{props.on !== undefined && <span>{props.on}</span>}</SwitchComponents.TextSwitchOn>
       <SwitchComponents.TextSwitchOff>
         {props.off !== undefined && <span>{props.off}</span>}

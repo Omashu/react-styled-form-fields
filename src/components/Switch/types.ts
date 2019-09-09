@@ -7,6 +7,7 @@ export interface SwitchProps {
   activeColor?: string;
   on?: React.ReactNode;
   off?: React.ReactNode;
+  disabled?: boolean;
   components?: {
     Control?: StyledComponent<any, any, SwitchControlProps, never>;
     Input?: StyledComponent<any, any, any, never>;
@@ -19,4 +20,5 @@ export interface SwitchProps {
 export interface SwitchControlProps {
   active: boolean;
   activeColor?: string;
+  disabled: boolean;
 }
