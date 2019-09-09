@@ -64,6 +64,16 @@ export const Control = styled.div<CheckboxControlProps>`
       background-color: ${props.activeColor || '#000'};
     }
   `}
+
+  ${props =>
+    props.disabled &&
+    `
+    opacity: 0.7;
+    ${Input}, ${RealmPoint} {
+      cursor: default;
+      pointer-events: none;
+    }
+  `}
 `;
 
 export const CheckIcon = styled.span`
@@ -71,4 +81,13 @@ export const CheckIcon = styled.span`
   position: relative;
   top: -1px;
   color: #fff;
+`;
+
+export const Label = styled.span`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-transform: none;
+  text-decoration: none;
 `;
